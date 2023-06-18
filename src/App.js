@@ -1,25 +1,76 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+//import Home from "./Home";
+//import About from "./About";
+import { Route, Switch } from "react-router-dom";
+import { Button } from "@material-ui/core";
+// import Jobs from "./Jobs";
+// import Engineer from "./Engineer";
+// import Marketer from "./Marketer";
+// import Designer from "./Designer";
+import Breadcrumbs from "./Breadcrumbs";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Breadcrumbs />
+      <Switch>
+        <Route exact from="/" render={props => <Home {...props} />} />
+        <Route exact path="/about" render={props => <About {...props} />} />
+        <Route exact path="/jobs" render={props => <Jobs {...props} />} />
+        <Route
+          exact
+          path="/jobs/engineer"
+          render={props => <Engineer {...props} />}
+        />
+        <Route
+          exact
+          path="/jobs/marketer"
+          render={props => <Marketer {...props} />}
+        />
+        <Route
+          exact
+          path="/jobs/designer"
+          render={props => <Designer {...props} />}
+        />
+      </Switch>
+    </>
   );
 }
 
-export default App;
+const Engineer = () => {
+  return <div>Apply to be an engineer!</div>;
+};
+
+const Designer = () => {
+  return <div>Apply for our designer position!</div>;
+};
+
+const About = (props) => {
+  return <div>About page there</div>;
+};
+
+const Home = props => {
+  const { history } = props;
+  return (
+    <>
+      <Button onClick={() => history.push("/about")}>ABOUT</Button>
+      <Button onClick={() => history.push("/jobs")}>JOBS</Button>
+    </>
+  );
+};
+
+
+const Jobs = props => {
+  const { history } = props;
+  return (
+    <>
+      <Button onClick={() => history.push("/jobs/engineer")}>engineer</Button>
+      <Button onClick={() => history.push("/jobs/marketer")}>marketer</Button>
+      <Button onClick={() => history.push("/jobs/designer")}>designer</Button>
+    </>
+  );
+};
+
+const Marketer = () => {
+  return <div>Become a marketer for our company!</div>;
+};
