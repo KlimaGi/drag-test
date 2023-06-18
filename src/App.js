@@ -7,12 +7,12 @@ import { Button } from "@material-ui/core";
 // import Engineer from "./Engineer";
 // import Marketer from "./Marketer";
 // import Designer from "./Designer";
-import Breadcrumbs from "./Breadcrumbs";
+import BasicBreadcrumbs from "./Breadcrumbs";
 
 export default function App() {
   return (
     <>
-      <Breadcrumbs />
+      <BasicBreadcrumbs />
       <Switch>
         <Route exact from="/" render={props => <Home {...props} />} />
         <Route exact path="/about" render={props => <About {...props} />} />
